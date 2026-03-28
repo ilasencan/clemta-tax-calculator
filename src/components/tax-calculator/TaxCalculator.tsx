@@ -6,6 +6,7 @@ import { calculateTax } from '@/lib/tax-calculator';
 import StepIndicator from './StepIndicator';
 import CountryCompanyStep from './CountryCompanyStep';
 import IncomeExpenseStep from './IncomeExpenseStep';
+import LeadCaptureStep from './LeadCaptureStep';
 import ResultsStep from './ResultsStep';
 
 export default function TaxCalculator() {
@@ -17,7 +18,7 @@ export default function TaxCalculator() {
   const [deductibleExpenses, setDeductibleExpenses] = useState(0);
   const [result, setResult] = useState<TaxResult | null>(null);
 
-  function handleCalculate() {
+  function handleIncomeNext() {
     const taxResult = calculateTax({
       country,
       companyType,
@@ -27,6 +28,12 @@ export default function TaxCalculator() {
     });
     setResult(taxResult);
     setStep(3);
+  }
+
+  function handleLeadSubmit(name: string, email: string) {
+    // TODO: Send lead data to your backend/CRM
+    console.log('Lead captured:', { name, email, country: country?.name, companyType });
+    setStep(4);
   }
 
   function handleStartOver() {
@@ -64,12 +71,19 @@ export default function TaxCalculator() {
             deductibleExpenses={deductibleExpenses}
             onGrossIncomeChange={setGrossIncome}
             onDeductibleExpensesChange={setDeductibleExpenses}
-            onNext={handleCalculate}
+            onNext={handleIncomeNext}
             onBack={() => setStep(1)}
           />
         )}
 
-        {step === 3 && result && country && (
+        {step === 3 && (
+          <LeadCaptureStep
+            onSubmit={handleLeadSubmit}
+            onBack={() => setStep(2)}
+          />
+        )}
+
+        {step === 4 && result && country && (
           <ResultsStep
             result={result}
             country={country}

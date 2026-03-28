@@ -5,7 +5,8 @@ interface StepIndicatorProps {
 const steps = [
   { number: 1, label: 'Country & Company' },
   { number: 2, label: 'Income & Expenses' },
-  { number: 3, label: 'Tax Estimate' },
+  { number: 3, label: 'Your Info' },
+  { number: 4, label: 'Tax Estimate' },
 ];
 
 export default function StepIndicator({ currentStep }: StepIndicatorProps) {
