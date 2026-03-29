@@ -7,16 +7,14 @@ interface CompanyTypeToggleProps {
   onChange: (type: CompanyType) => void;
 }
 
-const options: { type: CompanyType; title: string; description: string }[] = [
+const options: { type: CompanyType; title: string }[] = [
   {
     type: 'llc',
     title: 'LLC',
-    description: 'Pass-through taxation at individual rates (up to 37%)',
   },
   {
     type: 'ccorp',
     title: 'C-Corp',
-    description: 'Flat 21% corporate tax + dividend withholding',
   },
 ];
 
@@ -38,10 +36,9 @@ export default function CompanyTypeToggle({ value, onChange }: CompanyTypeToggle
                 : 'border-gray-200 bg-white hover:border-gray-300'
             }`}
           >
-            <div className={`font-semibold text-lg ${value === opt.type ? 'text-[var(--clemta-blue)]' : 'text-gray-900'}`}>
+            <div className={`font-semibold text-lg text-center ${value === opt.type ? 'text-[var(--clemta-blue)]' : 'text-gray-900'}`}>
               {opt.title}
             </div>
-            <div className="text-sm text-gray-500 mt-1">{opt.description}</div>
           </button>
         ))}
       </div>

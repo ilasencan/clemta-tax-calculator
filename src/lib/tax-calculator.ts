@@ -5,7 +5,7 @@ import { TREATY_RATES } from '@/data/treaty-rates';
 export function calculateCCorpTax(input: TaxInput): CCorpResult {
   const netIncome = Math.max(0, input.grossIncome - input.deductibleExpenses);
 
-  // C-Corp is a US entity — ALWAYS subject to 21% corporate tax
+  // C-Corp is a US entity - ALWAYS subject to 21% corporate tax
   // regardless of PE status or foreign ownership
   const corporateTax = Math.round(netIncome * CCORP_RATE);
   const afterTaxProfit = netIncome - corporateTax;

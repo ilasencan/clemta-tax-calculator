@@ -11,13 +11,13 @@ const steps = [
 
 export default function StepIndicator({ currentStep }: StepIndicatorProps) {
   return (
-    <div className="flex items-center justify-between mb-8 px-4">
-      {steps.map((step, i) => (
-        <div key={step.number} className="flex items-center flex-1 last:flex-none">
-          {/* Circle + Label */}
-          <div className="flex flex-col items-center relative">
+    <div className="mb-8 px-6">
+      {/* Top row: circles and lines only */}
+      <div className="flex items-center">
+        {steps.map((step, i) => (
+          <div key={step.number} className={`flex items-center ${i < steps.length - 1 ? 'flex-1' : ''}`}>
             <div
-              className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ring-4 ${
+              className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ring-4 shrink-0 ${
                 step.number < currentStep
                   ? 'bg-[var(--clemta-green)] text-white ring-[var(--clemta-green-light)]'
                   : step.number === currentStep
@@ -33,8 +33,28 @@ export default function StepIndicator({ currentStep }: StepIndicatorProps) {
                 step.number
               )}
             </div>
+            {i < steps.length - 1 && (
+              <div className="flex-1 mx-2 relative h-1">
+                <div className="h-1 rounded-full bg-gray-200 w-full" />
+                <div
+                  className={`absolute top-0 left-0 h-1 rounded-full transition-all duration-500 ${
+                    step.number < currentStep
+                      ? 'bg-[var(--clemta-green)] w-full'
+                      : 'w-0'
+                  }`}
+                />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Bottom row: labels aligned under each circle */}
+      <div className="flex mt-2">
+        {steps.map((step, i) => (
+          <div key={step.number} className={`flex items-start ${i < steps.length - 1 ? 'flex-1' : ''}`}>
             <span
-              className={`text-xs mt-2 whitespace-nowrap hidden sm:block ${
+              className={`text-xs whitespace-nowrap hidden sm:inline w-10 text-center shrink-0 ${
                 step.number < currentStep
                   ? 'text-green-600 font-medium'
                   : step.number === currentStep
@@ -45,24 +65,8 @@ export default function StepIndicator({ currentStep }: StepIndicatorProps) {
               {step.label}
             </span>
           </div>
-
-          {/* Connector line */}
-          {i < steps.length - 1 && (
-            <div className="flex-1 mx-3 relative">
-              {/* Background track */}
-              <div className="h-1 rounded-full bg-gray-200 w-full" />
-              {/* Filled progress */}
-              <div
-                className={`absolute top-0 left-0 h-1 rounded-full transition-all duration-500 ${
-                  step.number < currentStep
-                    ? 'bg-[var(--clemta-green)] w-full'
-                    : 'w-0'
-                }`}
-              />
-            </div>
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

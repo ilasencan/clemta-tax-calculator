@@ -92,7 +92,7 @@ export default function ResultsStep({ result, country, grossIncome, deductibleEx
         <div className="space-y-4">
           {data.hasPhysicalEstablishment ? (
             <>
-              <h3 className="font-semibold text-gray-900">LLC Tax Breakdown — Effectively Connected Income (ECI)</h3>
+              <h3 className="font-semibold text-gray-900">LLC Tax Breakdown - Effectively Connected Income (ECI)</h3>
               <div className="p-3 rounded-lg bg-blue-50 text-sm text-blue-800">
                 You are engaged in a US trade or business. Your LLC income is treated as
                 Effectively Connected Income (ECI) and taxed at graduated federal individual rates (10%–37%).
@@ -109,7 +109,7 @@ export default function ResultsStep({ result, country, grossIncome, deductibleEx
             </>
           ) : (
             <>
-              <h3 className="font-semibold text-gray-900">LLC Tax — No US Trade or Business</h3>
+              <h3 className="font-semibold text-gray-900">LLC Tax - No US Trade or Business</h3>
               <div className="p-3 rounded-lg bg-[var(--clemta-green-light)] text-sm text-green-800">
                 <strong>No US federal income tax on business profits.</strong> You are not engaged in a
                 US trade or business, so your LLC&apos;s business income is not treated as Effectively
@@ -121,7 +121,7 @@ export default function ResultsStep({ result, country, grossIncome, deductibleEx
               </div>
               <div className="p-4 bg-amber-50 rounded-lg border border-amber-200 text-sm text-amber-800">
                 <strong>Note:</strong> This applies to active business profits only.
-                US-sourced passive income (FDAP — dividends, interest, royalties, rental income)
+                US-sourced passive income (FDAP - dividends, interest, royalties, rental income)
                 may still be subject to {country.hasTreaty ? 'treaty-reduced' : '30% default'} withholding tax.
                 You are still required to file Form 5472 with a pro forma Form 1120 annually for reporting purposes.
               </div>

@@ -5,8 +5,7 @@ export default function Disclaimer() {
         <strong>Disclaimer:</strong> This calculator provides estimates for informational purposes
         only and does not constitute tax, legal, or financial advice. Actual tax obligations may
         vary based on individual circumstances, applicable deductions, credits, and current tax
-        laws. Consult a qualified tax professional for personalized guidance. Clemta is not a tax
-        advisory firm.
+        laws. Consult a qualified tax professional for personalized guidance.
       </p>
     </div>
   );
